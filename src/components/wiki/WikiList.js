@@ -32,7 +32,6 @@ const WikiList = () => {
     );
   });
 
-  console.log(`Search Term ${term}`);
   return (
     <React.Fragment>
       <div className="container" id="wiki">
