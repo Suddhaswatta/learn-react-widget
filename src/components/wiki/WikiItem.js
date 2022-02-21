@@ -1,6 +1,6 @@
 import React from "react";
 
-const AccordionItem = ({ item ,index,currentIndex,show}) => {
+const WikiItem = ({ item,index,currentIndex,show}) => {
 
   const onTitleClick = idx => {
      currentIndex(idx);
@@ -14,7 +14,7 @@ const AccordionItem = ({ item ,index,currentIndex,show}) => {
             {item.title}
           </button>
         </h2>
-        <div id="collapseOne" className={`accordion-collapse collapse ${show}`}>
+        <div id="collapseOne" className={`accordion-collapse ${show}`}>
           <div className="accordion-body">
             {item.content}
           </div>
@@ -23,4 +23,4 @@ const AccordionItem = ({ item ,index,currentIndex,show}) => {
     </React.Fragment>
   );
 };
-export default AccordionItem;
+export default WikiItem;

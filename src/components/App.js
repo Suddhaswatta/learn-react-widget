@@ -1,12 +1,12 @@
 import React from "react";
-import AccordionList from "./accordion/AccordionList";
 import Header from "./header/Header";
+import WikiList from "./wiki/WikiList";
 
 const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <AccordionList />
+      <WikiList />
     </React.Fragment>
   );
 };
