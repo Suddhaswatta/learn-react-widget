@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchWiki from "./SearchWiki";
 
-import './Wiki.css';
+import "./Wiki.css";
 import WikiItem from "./WikiItem";
 const WikiList = () => {
   const items = [
@@ -16,7 +16,7 @@ const WikiList = () => {
     },
   ];
 
-  const [term, setTerm] = useState('') // State Array for Search Term
+  const [term, setTerm] = useState(""); // State Array for Search Term data is received through callback
   const [show, setShow] = useState(null); // State Array for index of selected accordion
 
   const wikiItems = items.map((item, idx) => {
@@ -37,7 +37,9 @@ const WikiList = () => {
     <React.Fragment>
       <div className="container" id="wiki">
         <div className="row align-items-center">
-          <div className="col-lg-12 col-md-12 col-sm-12"><SearchWiki term={setTerm}/></div>
+          <div className="col-lg-12 col-md-12 col-sm-12">
+            <SearchWiki setSearchTerm={setTerm} searchTerm={term} />
+          </div>
         </div>
         <p></p>
         <div className="row">

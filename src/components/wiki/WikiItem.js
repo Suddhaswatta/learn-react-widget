@@ -1,10 +1,9 @@
 import React from "react";
 
 const WikiItem = ({ item, index, currentIndex, show }) => {
-
   /** This component deals with accordion styling and data rendering . It changes current index state of it's parent component.
    * Check out the onclick event it uses callback prop to pass data
-   * It receives the show class from its parent component and appends it accordion-collapse show 
+   * It receives the show class from its parent component and appends it accordion-collapse show
    */
   return (
     <React.Fragment key={index}>
