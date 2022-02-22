@@ -13,7 +13,8 @@ const WikiList = () => {
 
     /**Search on initial render  */
     const search = async () => {
-      const { data } = await WikiApi.get("/", {
+      const { data } = await WikiApi.get("",
+       {
         params: {
           action: "query",
           list: "search",

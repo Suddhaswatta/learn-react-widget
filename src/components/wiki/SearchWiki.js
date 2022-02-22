@@ -7,12 +7,13 @@ const SearchWiki = ({ setSearchTerm, searchTerm }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target.search.value);
     setSearchTerm(e.target.search.value);
   };
 
   return (
     <React.Fragment>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={(e)=>onSubmit(e)}>
         <input
           name="search"
           type="text"

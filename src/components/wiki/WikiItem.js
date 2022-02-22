@@ -5,6 +5,7 @@ const WikiItem = ({ item, index, currentIndex, show }) => {
    * Check out the onclick event it uses callback prop to pass data
    * It receives the show class from its parent component and appends it accordion-collapse show
    * Demonstrate dangerouslySetInnerHTML for Cross site Scripting attack.
+   * Added Anchor tag for to go actual page
    */
   return (
     <React.Fragment key={item.pageid}>
@@ -20,7 +21,22 @@ const WikiItem = ({ item, index, currentIndex, show }) => {
         </h2>
         <div id="collapseOne" className={`accordion-collapse ${show}`}>
           <div className="accordion-body">
-            <div dangerouslySetInnerHTML={{__html:item.snippet}}></div>
+            <span dangerouslySetInnerHTML={{ __html: item.snippet }}></span>
+            <span>
+              <a
+                href={`https://en.wikipedia.org?curid=${item.pageid}`}
+                target="_blank"
+                rel="noreferrer noreferrer"
+              >
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  style={{ marginLeft: "10px", marginTop: "5px" }}
+                >
+                  Go to Page
+                </button>
+              </a>
+            </span>
           </div>
         </div>
       </div>
