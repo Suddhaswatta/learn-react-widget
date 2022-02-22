@@ -10,11 +10,9 @@ const WikiList = () => {
   const [show, setShow] = useState(0); // State Array for index of selected accordion
 
   useEffect(() => {
-
     /**Search on initial render  */
     const search = async () => {
-      const { data } = await WikiApi.get("",
-       {
+      const { data } = await WikiApi.get("", {
         params: {
           action: "query",
           list: "search",
@@ -38,7 +36,9 @@ const WikiList = () => {
       console.log("Clean up");
       clearTimeout(timerId);
     };
-  }, [debouncedTerm]); /** Use effect gets called after debounced term gets updated */ 
+  }, [
+    debouncedTerm,
+  ]); /** Use effect gets called after debounced term gets updated */
 
   const wikiItems = items.map((item, idx) => {
     const active = show === idx ? "show" : "collapse";
@@ -56,8 +56,8 @@ const WikiList = () => {
   return (
     <React.Fragment>
       <div className="container" id="wiki">
-        <div className="row align-items-center">
-          <div className="col-lg-12 col-md-12 col-sm-12">
+        <div className="row">
+          <div className="col-lg-6 col-md-12 col-sm-12">
             <SearchWiki
               setSearchTerm={setDebouncedTerm}
               searchTerm={debouncedTerm}
