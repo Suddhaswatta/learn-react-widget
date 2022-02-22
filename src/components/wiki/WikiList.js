@@ -1,37 +1,41 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import WikiApi from "../../api/WikiApi";
 import SearchWiki from "./SearchWiki";
 
 import "./Wiki.css";
 import WikiItem from "./WikiItem";
 const WikiList = () => {
-
   const [items, setItems] = useState([]);
-  const [term, setTerm] = useState("programming"); // State Array for Search Term data is received through callback
+  const [debouncedTerm, setDebouncedTerm] = useState("programming"); // State Array for Search Term data is received through callback
   const [show, setShow] = useState(0); // State Array for index of selected accordion
 
   useEffect(() => {
     const search = async () => {
-      const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
+      const { data } = await WikiApi.get('',{
         params: {
           action: "query",
           list: "search",
           origin: "*",
           format: "json",
-          srsearch: term,
+          srsearch: debouncedTerm,
         },
       });
       console.log(data.query.search);
       setItems(data.query.search);
     };
-    if(term){
-      search()
-    };
+
+    const timerId = setTimeout(() => {
+      if (debouncedTerm) {
+        search();
+      }
+    }, 1000);
 
     return () => {
       console.log("Clean up");
+      clearTimeout(timerId);
     };
-  }, [term]);
+  }, [debouncedTerm]);
 
   const wikiItems = items.map((item, idx) => {
     const active = show === idx ? "show" : "collapse";
@@ -51,7 +55,7 @@ const WikiList = () => {
       <div className="container" id="wiki">
         <div className="row align-items-center">
           <div className="col-lg-12 col-md-12 col-sm-12">
-            <SearchWiki setSearchTerm={setTerm} searchTerm={term} />
+            <SearchWiki setSearchTerm={setDebouncedTerm} searchTerm={debouncedTerm} />
           </div>
         </div>
         <p></p>
