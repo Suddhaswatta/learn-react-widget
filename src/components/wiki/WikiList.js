@@ -36,9 +36,7 @@ const WikiList = () => {
       console.log("Clean up");
       clearTimeout(timerId);
     };
-  }, [
-    debouncedTerm,
-  ]); /** Use effect gets called after debounced term gets updated */
+  }, [debouncedTerm]); /** Use effect gets called after debounced term gets updated */
 
   const wikiItems = items.map((item, idx) => {
     const active = show === idx ? "show" : "collapse";
