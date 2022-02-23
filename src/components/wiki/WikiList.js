@@ -6,7 +6,7 @@ import "./Wiki.css";
 import WikiItem from "./WikiItem";
 const WikiList = () => {
   const [items, setItems] = useState([]);
-  const [debouncedTerm, setDebouncedTerm] = useState("programming"); // State Array for Search Term data is received through callback
+  const [searchTerm, setSearchTerm] = useState("programming"); // State Array for Search Term data is received through callback
   const [show, setShow] = useState(0); // State Array for index of selected accordion
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const WikiList = () => {
           list: "search",
           origin: "*",
           format: "json",
-          srsearch: debouncedTerm,
+          srsearch: searchTerm,
         },
       });
       console.log(data.query.search);
@@ -26,7 +26,7 @@ const WikiList = () => {
     };
 
     const timerId = setTimeout(() => {
-      if (debouncedTerm) {
+      if (searchTerm) {
         search();
       }
     }, 1000);
@@ -36,7 +36,7 @@ const WikiList = () => {
       console.log("Clean up");
       clearTimeout(timerId);
     };
-  }, [debouncedTerm]); /** Use effect gets called after debounced term gets updated */
+  }, [searchTerm]); /** Use effect gets called after debounced term gets updated */
 
   const wikiItems = items.map((item, idx) => {
     const active = show === idx ? "show" : "collapse";
@@ -57,8 +57,8 @@ const WikiList = () => {
         <div className="row">
           <div className="col-lg-6 col-md-12 col-sm-12">
             <SearchWiki
-              setSearchTerm={setDebouncedTerm}
-              searchTerm={debouncedTerm}
+              setSearchTerm={setSearchTerm}
+              searchTerm={searchTerm}
             />
           </div>
         </div>
