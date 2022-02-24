@@ -10,13 +10,14 @@ const WikiList = () => {
   const [show, setShow] = useState(0); // State Array for index of selected accordion
   const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
 
-  const [results] = useResults(debouncedTerm); // Custom Hooks to fetch Wikipedia search results
+  const [results] = useResults(debouncedTerm); // Custom Hooks to fetch Wikipedia search results reducing boilerplate in Component
 
+  const debounceTime = 1000;
   useEffect(() => {
     /**Search on initial render  */
     const timerId = setTimeout(() => {
-      setDebouncedTerm(searchTerm); // Debouncing
-    }, 10000);
+      if (searchTerm) setDebouncedTerm(searchTerm); // Debouncing
+    }, debounceTime);
 
     /**Use effect clean up func */
     return () => {
@@ -32,7 +33,7 @@ const WikiList = () => {
         key={idx}
         index={idx}
         currentIndex={setShow} // Callback prop to get current index
-        show={active} // Passes down show var which appended to accordion
+        show={active} // Passes down show var which appended to accordion class
       />
     );
   });
